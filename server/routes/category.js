@@ -10,9 +10,11 @@ import {
 
 const router = express.Router();
 
-router.route('/create').post(userLoggedIn, admin, createCategory);
+router
+  .route('/')
+  .post(userLoggedIn, admin, createCategory)
+  .get(list);
 
-router.route('/').get(list);
 router
   .route('/:id')
   .delete(userLoggedIn, admin, deleteCategory)
