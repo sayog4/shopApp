@@ -7,7 +7,8 @@ import {
   deleteProduct,
   updateProduct,
   getTopProducts,
-  createReview
+  createReview,
+  listRelated
 } from '../controller/product.js';
 
 const router = express.Router();
@@ -24,5 +25,7 @@ router
   .get(getProductById)
   .delete(userLoggedIn, admin, deleteProduct)
   .put(userLoggedIn, admin, updateProduct);
+
+router.route('/related/:id').get(listRelated);
 
 export default router;

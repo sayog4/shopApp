@@ -129,6 +129,20 @@ const createReview = asyncHandler(async (req, res) => {
   }
 });
 
+const listRelated = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  if (product) {
+    const relatedProducts = await Product.find({ category: product.category })
+      .limit(3)
+      .populate('category', '_id name');
+
+    res.json(relatedProducts);
+  } else {
+    res.status(404);
+    throw new Error('Product not found');
+  }
+});
+
 export {
   createProduct,
   listProducts,
@@ -136,5 +150,6 @@ export {
   updateProduct,
   deleteProduct,
   getTopProducts,
-  createReview
+  createReview,
+  listRelated
 };

@@ -1,12 +1,14 @@
 {
-  "name": "shopApp",
+  "name": "shopapp",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "license": "MIT",
   "type": "module",
   "scripts": {
     "start": "node server/server",
-    "server": "nodemon server/server"
+    "server": "nodemon server/server",
+    "client": "yarn --cwd client start",
+    "dev": "concurrently \"yarn server\" \"yarn client\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
