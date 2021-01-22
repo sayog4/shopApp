@@ -5,7 +5,8 @@ import {
   createCategory,
   list,
   deleteCategory,
-  updateCategory
+  updateCategory,
+  singleCategory
 } from '../controller/category.js';
 
 const router = express.Router();
@@ -17,6 +18,7 @@ router
 
 router
   .route('/:id')
+  .get(singleCategory)
   .delete(userLoggedIn, admin, deleteCategory)
   .put(userLoggedIn, admin, updateCategory);
 
