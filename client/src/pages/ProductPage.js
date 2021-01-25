@@ -13,6 +13,7 @@ import {
 import Rating from '../components/Rating';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 
 import {
   listProductDetails,
@@ -66,27 +67,12 @@ const ProductPage = ({ match, history }) => {
         <Message>{error}</Message>
       ) : (
         <React.Fragment>
+          <Meta title={product.name} />
           <Row>
             <Col md={6}>
               <Image fluid src={product.image} alt={product.name} />
             </Col>
             <Col md={6}>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  <h4>{product.name}</h4>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Rating
-                    value={product.rating}
-                    text={`${product.numReviews} reviews`}
-                  />
-                </ListGroup.Item>
-                <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
-                <ListGroup.Item>
-                  Description: {product.description}
-                </ListGroup.Item>
-              </ListGroup>
-
               <Card>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
@@ -139,6 +125,21 @@ const ProductPage = ({ match, history }) => {
                   </ListGroup.Item>
                 </ListGroup>
               </Card>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <h4>{product.name}</h4>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Rating
+                    value={product.rating}
+                    text={`${product.numReviews} reviews`}
+                  />
+                </ListGroup.Item>
+                <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
+                <ListGroup.Item>
+                  Description: {product.description}
+                </ListGroup.Item>
+              </ListGroup>
             </Col>
           </Row>
           <Row>

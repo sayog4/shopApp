@@ -4,15 +4,18 @@ export const categoryListReducer = (state = { category: [] }, action) => {
   switch (action.type) {
     case CATEGORY_CONSTANT.CATEGORY_LIST_REQUEST:
       return {
+        ...state,
         loading: true
       };
     case CATEGORY_CONSTANT.CATEGORY_LIST_SUCCESS:
       return {
+        ...state,
         loading: false,
         category: action.payload
       };
     case CATEGORY_CONSTANT.CATEGORY_LIST_FAIL:
       return {
+        ...state,
         loading: false,
         error: action.payload
       };
@@ -125,7 +128,9 @@ export const categoryFetchProductsReducer = (
     case CATEGORY_CONSTANT.CATEGORY_FETCH_PRODUCTS_SUCCESS:
       return {
         loading: false,
-        products: action.payload
+        products: action.payload.products,
+        pages: action.payload.pages,
+        page: action.payload.page
       };
     case CATEGORY_CONSTANT.CATEGORY_FETCH_PRODUCTS_FAIL:
       return {

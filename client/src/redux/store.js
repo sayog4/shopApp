@@ -24,6 +24,7 @@ import {
 import {
   productCreateReducer,
   productDeleteReducer,
+  productTopRatedReducer,
   productDetailsReducer,
   productUpdateReducer,
   productListReducer,
@@ -56,6 +57,7 @@ const reducer = combineReducers({
   categorySingle: categorySingleReducer,
   categoryFetchProducts: categoryFetchProductsReducer,
   productCreate: productCreateReducer,
+  productTopRated: productTopRatedReducer,
   productDelete: productDeleteReducer,
   productDetails: productDetailsReducer,
   productUpdate: productUpdateReducer,

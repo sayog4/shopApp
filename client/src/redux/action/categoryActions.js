@@ -136,12 +136,14 @@ export const singleCategory = id => async dispatch => {
   }
 };
 
-export const productsByCategory = id => async dispatch => {
+export const productsByCategory = (id, pageNumber) => async dispatch => {
   try {
     dispatch({
       type: CATEGORY_CONSTANT.CATEGORY_FETCH_PRODUCTS_REQUEST
     });
-    const { data } = await axios.get(`/api/products/category/${id}`);
+    const { data } = await axios.get(
+      `/api/products/category/${id}?pageNumber=${pageNumber}`
+    );
     dispatch({
       type: CATEGORY_CONSTANT.CATEGORY_FETCH_PRODUCTS_SUCCESS,
       payload: data

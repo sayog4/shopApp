@@ -26,9 +26,24 @@ const createProduct = asyncHandler(async (req, res) => {
 });
 
 const listProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).populate('category', 'name _id');
+  const pageSize = 6;
+  const page = Number(req.query.pageNumber) || 1;
 
-  res.json(products);
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: 'i'
+        }
+      }
+    : {};
+  const count = await Product.countDocuments({ ...keyword });
+  const products = await Product.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1))
+    .populate('category', 'name _id');
+
+  res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
 const getProductById = asyncHandler(async (req, res) => {
@@ -145,15 +160,22 @@ const listRelated = asyncHandler(async (req, res) => {
 
 const getProductsByCategory = asyncHandler(async (req, res) => {
   const categoryId = req.params.id;
+  const pageSize = 6;
+  const page = Number(req.query.pageNumber);
+
+  const count = await Product.countDocuments({ category: categoryId });
+
   const products = await Product.find({
     category: categoryId
-  });
+  })
+    .limit(pageSize)
+    .skip(page * (page - 1));
   if (products) {
     if (products.length === 0)
       throw new Error(
         'No products found.Create a new product in this category'
       );
-    res.json(products);
+    res.json({ products, page, pages: Math.ceil(count / pageSize) });
   } else {
     res.status(404);
     throw new Error('No products found from given gategory');

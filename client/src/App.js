@@ -34,8 +34,12 @@ const App = () => {
         <Switch>
           <Route path="/register" exact component={RegisterPage} />
           <Route path="/login" exact component={LoginPage} />
-          <Route path="/shop" exact component={ShopPage} />
-          <Route path="/shop/category/:id" component={CategoryPage} />
+
+          <Route
+            path="/shop/category/:id/page/:pageNumber"
+            component={CategoryPage}
+          />
+          <Route exact path="/shop/category/:id" component={CategoryPage} />
           <Route path="/product/:id" exact component={ProductPage} />
           <Route path="/cart/:id?" component={CartPage} />
           <PrivateRoute path="/profile" exact component={ProfilePage} />
@@ -65,6 +69,11 @@ const App = () => {
             component={CategoryEditPage}
           />
           <AdminRoute
+            path="/admin/productlist/page/:pageNumber"
+            exact
+            component={ProductListPage}
+          />
+          <AdminRoute
             path="/admin/productlist"
             exact
             component={ProductListPage}
@@ -79,6 +88,14 @@ const App = () => {
             exact
             component={ProductEditScreen}
           />
+          <Route
+            path="/shop/search/:keyword/page/:pageNumber"
+            exact
+            component={ShopPage}
+          />
+          <Route exact path="/shop/search/:keyword" component={ShopPage} />
+          <Route path="/shop/page/:pageNumber" exact component={ShopPage} />
+          <Route path="/shop" component={ShopPage} />
           <Route path="/" exact component={HomePage} />
         </Switch>
       </Container>

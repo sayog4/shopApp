@@ -5,12 +5,17 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Message from '../components/Message';
 import Loader from '../components/Loader';
+import Paginate from '../components/Paginate';
 import { listProducts, deleteProduct } from '../redux/action/productAction';
 
-const ProductListPage = ({ history, match }) => {
+const ProductListPage = ({ match }) => {
   const dispatch = useDispatch();
 
-  const { loading, error, products } = useSelector(state => state.productList);
+  const pageNumber = match.params.pageNumber || 1;
+
+  const { loading, error, products, pages, page } = useSelector(
+    state => state.productList
+  );
 
   const {
     error: errorDelete,
@@ -19,8 +24,8 @@ const ProductListPage = ({ history, match }) => {
   } = useSelector(state => state.productDelete);
 
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch, successDelete]);
+    dispatch(listProducts('', pageNumber));
+  }, [dispatch, successDelete, pageNumber]);
 
   const deleteHandler = id => {
     if (window.confirm('You wanna delete?')) {
@@ -89,6 +94,7 @@ const ProductListPage = ({ history, match }) => {
               ))}
             </tbody>
           </Table>
+          <Paginate page={page} pages={pages} isAdmin={true} />
         </React.Fragment>
       )}
     </React.Fragment>
