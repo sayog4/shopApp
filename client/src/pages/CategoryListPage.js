@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import { listCategory, deleteCategory } from '../redux/action/categoryActions';
@@ -24,13 +24,21 @@ const CategoryListPage = () => {
   };
   return (
     <React.Fragment>
-      <h1 className="text-center">Categories</h1>
+      <Row className="align-items-center">
+        <Col>
+          <h1>Categories</h1>
+        </Col>
+        <Col className="text-right">
+          <LinkContainer to="/admin/category/create" className="my-2">
+            <Button className="btn-primary">
+              Create Category <i className="fas fa-plus"></i>
+            </Button>
+          </LinkContainer>
+        </Col>
+      </Row>
+
       {deleteError && <Message>{deleteError}</Message>}
-      <LinkContainer to="/admin/category/create" className="my-2">
-        <Button className="btn-primary">
-          Create Category <i className="fas fa-plus"></i>
-        </Button>
-      </LinkContainer>
+
       {loading ? (
         <Loader />
       ) : error ? (

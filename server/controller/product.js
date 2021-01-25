@@ -26,7 +26,7 @@ const createProduct = asyncHandler(async (req, res) => {
 });
 
 const listProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({});
+  const products = await Product.find({}).populate('category', 'name _id');
 
   res.json(products);
 });
@@ -143,6 +143,22 @@ const listRelated = asyncHandler(async (req, res) => {
   }
 });
 
+const getProductsByCategory = asyncHandler(async (req, res) => {
+  const categoryId = req.params.id;
+  const products = await Product.find({
+    category: categoryId
+  });
+  if (products) {
+    if (products.length === 0)
+      throw new Error(
+        'No products found.Create a new product in this category'
+      );
+    res.json(products);
+  } else {
+    res.status(404);
+    throw new Error('No products found from given gategory');
+  }
+});
 export {
   createProduct,
   listProducts,
@@ -151,5 +167,6 @@ export {
   deleteProduct,
   getTopProducts,
   createReview,
-  listRelated
+  listRelated,
+  getProductsByCategory
 };

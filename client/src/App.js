@@ -15,6 +15,16 @@ import CategoryListPage from './pages/CategoryListPage';
 import CategoryEditPage from './pages/CategoryEditPage';
 import CategoryCreatePage from './pages/CategoryCreatePage';
 import UserEditPage from './pages/UserEditPage';
+import ProductListPage from './pages/ProductListPage';
+import ProductEditScreen from './pages/ProductEditScreen';
+import ProductCreatePage from './pages/ProductCreatePage';
+import ProductPage from './pages/ProductPage';
+import CartPage from './pages/CartPage';
+import CategoryPage from './pages/CategoryPage';
+import ShippingPage from './pages/ShippingPage';
+import PlaceOrderPage from './pages/PlaceOrderPage';
+import OrderPage from './pages/OrderPage';
+import OrderListPage from './pages/OrderListPage';
 
 const App = () => {
   return (
@@ -25,8 +35,15 @@ const App = () => {
           <Route path="/register" exact component={RegisterPage} />
           <Route path="/login" exact component={LoginPage} />
           <Route path="/shop" exact component={ShopPage} />
+          <Route path="/shop/category/:id" component={CategoryPage} />
+          <Route path="/product/:id" exact component={ProductPage} />
+          <Route path="/cart/:id?" component={CartPage} />
           <PrivateRoute path="/profile" exact component={ProfilePage} />
+          <PrivateRoute path="/shipping" exact component={ShippingPage} />
+          <PrivateRoute path="/placeorder" exact component={PlaceOrderPage} />
+          <PrivateRoute path="/order/:id" component={OrderPage} />
           <AdminRoute path="/admin/userlist" exact component={UserListPage} />
+          <AdminRoute path="/admin/orderlist" exact component={OrderListPage} />
           <AdminRoute
             path="/admin/user/:id/edit"
             exact
@@ -46,6 +63,21 @@ const App = () => {
             path="/admin/category/:id/edit"
             exact
             component={CategoryEditPage}
+          />
+          <AdminRoute
+            path="/admin/productlist"
+            exact
+            component={ProductListPage}
+          />
+          <AdminRoute
+            path="/admin/product/create"
+            exact
+            component={ProductCreatePage}
+          />
+          <AdminRoute
+            path="/admin/product/:id/edit"
+            exact
+            component={ProductEditScreen}
           />
           <Route path="/" exact component={HomePage} />
         </Switch>

@@ -8,7 +8,8 @@ import {
   updateProduct,
   getTopProducts,
   createReview,
-  listRelated
+  listRelated,
+  getProductsByCategory
 } from '../controller/product.js';
 
 const router = express.Router();
@@ -27,5 +28,7 @@ router
   .put(userLoggedIn, admin, updateProduct);
 
 router.route('/related/:id').get(listRelated);
+
+router.route('/category/:id').get(getProductsByCategory);
 
 export default router;

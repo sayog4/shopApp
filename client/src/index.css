@@ -1,0 +1,10 @@
+body {
+  padding-top: 70px;
+}
+.list-group-item {
+  background-color: #fff;
+  color: #333;
+}
+.list-group-item:hover {
+  color: #000;
+}

@@ -3,11 +3,15 @@ import asyncHandler from 'express-async-handler';
 import Category from '../models/category.js';
 
 const createCategory = asyncHandler(async (req, res) => {
-  const category = await Category.create({ name: req.body.name });
+  const category = await Category.create({
+    name: req.body.name,
+    image: req.body.image
+  });
   if (category) {
     res.status(201).json({
       id: category._id,
-      name: category.name
+      name: category.name,
+      image: category.image
     });
   } else {
     res.status(400);
@@ -36,6 +40,7 @@ const updateCategory = asyncHandler(async (req, res) => {
 
   if (category) {
     category.name = req.body.name;
+    category.image = req.body.image;
     const updatedCategory = await category.save();
     res.json(updatedCategory);
   }

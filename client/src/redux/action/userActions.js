@@ -1,5 +1,6 @@
 import axios from 'axios';
 import USER_CONSTANTS from '../constant/userConstants';
+import ORDER_CONSTANT from '../constant/orderConstant';
 
 export const login = (email, password) => async dispatch => {
   try {
@@ -77,6 +78,7 @@ export const logout = () => dispatch => {
   dispatch({
     type: USER_CONSTANTS.USER_LIST_RESET
   });
+  dispatch({ type: ORDER_CONSTANT.ORDER_LIST_MY_RESET });
 };
 
 export const getUserDetails = id => async (dispatch, getState) => {

@@ -21,7 +21,7 @@ export const listCategory = () => async dispatch => {
   }
 };
 
-export const createCategory = name => async (dispatch, getState) => {
+export const createCategory = (name, image) => async (dispatch, getState) => {
   try {
     dispatch({ type: CATEGORY_CONSTANT.CATEGORY_CREATE_REQUEST });
     const {
@@ -34,7 +34,7 @@ export const createCategory = name => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`
       }
     };
-    const { data } = await axios.post(`/api/category`, { name }, config);
+    const { data } = await axios.post(`/api/category`, { name, image }, config);
     dispatch({
       type: CATEGORY_CONSTANT.CATEGORY_CREATE_SUCCESS,
       payload: data
@@ -79,7 +79,10 @@ export const deleteCategory = id => async (dispatch, getState) => {
   }
 };
 
-export const updateCategory = (id, name) => async (dispatch, getState) => {
+export const updateCategory = (id, name, image) => async (
+  dispatch,
+  getState
+) => {
   try {
     dispatch({ type: CATEGORY_CONSTANT.CATEGORY_UPDATE_REQUEST });
 
@@ -93,7 +96,11 @@ export const updateCategory = (id, name) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`
       }
     };
-    const { data } = await axios.put(`/api/category/${id}`, { name }, config);
+    const { data } = await axios.put(
+      `/api/category/${id}`,
+      { name, image },
+      config
+    );
     dispatch({
       type: CATEGORY_CONSTANT.CATEGORY_UPDATE_SUCCESS,
       payload: data
@@ -121,6 +128,27 @@ export const singleCategory = id => async dispatch => {
   } catch (error) {
     dispatch({
       type: CATEGORY_CONSTANT.CATEGORY_SINGLE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.response
+    });
+  }
+};
+
+export const productsByCategory = id => async dispatch => {
+  try {
+    dispatch({
+      type: CATEGORY_CONSTANT.CATEGORY_FETCH_PRODUCTS_REQUEST
+    });
+    const { data } = await axios.get(`/api/products/category/${id}`);
+    dispatch({
+      type: CATEGORY_CONSTANT.CATEGORY_FETCH_PRODUCTS_SUCCESS,
+      payload: data
+    });
+  } catch (error) {
+    dispatch({
+      type: CATEGORY_CONSTANT.CATEGORY_FETCH_PRODUCTS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -112,3 +112,27 @@ export const categorySingleReducer = (state = { category: {} }, action) => {
       return state;
   }
 };
+
+export const categoryFetchProductsReducer = (
+  state = { products: [] },
+  action
+) => {
+  switch (action.type) {
+    case CATEGORY_CONSTANT.CATEGORY_FETCH_PRODUCTS_REQUEST:
+      return {
+        loading: true
+      };
+    case CATEGORY_CONSTANT.CATEGORY_FETCH_PRODUCTS_SUCCESS:
+      return {
+        loading: false,
+        products: action.payload
+      };
+    case CATEGORY_CONSTANT.CATEGORY_FETCH_PRODUCTS_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      };
+    default:
+      return state;
+  }
+};
