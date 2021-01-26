@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Row, Col, Button, Table } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
+import moment from 'moment';
 
 import Message from '../components/Message';
 import Loader from '../components/Loader';
@@ -137,18 +138,18 @@ const ProfilePage = () => {
               {orders.map(order => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
-                  <td>{order.createdAt.substring(0, 10)}</td>
+                  <td>{moment(order.createdAt).fromNow()}</td>
                   <td>{order.totalPrice}</td>
                   <td>
                     {order.isPaid ? (
-                      order.paidAt.substring(0, 10)
+                      moment(order.paidAt).fromNow()
                     ) : (
                       <i className="fas fa-times" style={{ color: 'red' }}></i>
                     )}
                   </td>
                   <td>
                     {order.isDelivered ? (
-                      order.deliveredAt.substring(0, 10)
+                      moment(order.deliveredAt).fromNow()
                     ) : (
                       <i className="fas fa-times" style={{ color: 'red' }}></i>
                     )}

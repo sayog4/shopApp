@@ -25,80 +25,88 @@ import ShippingPage from './pages/ShippingPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
 import OrderPage from './pages/OrderPage';
 import OrderListPage from './pages/OrderListPage';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
     <Router>
       <Header />
-      <Container className="py-3">
-        <Switch>
-          <Route path="/register" exact component={RegisterPage} />
-          <Route path="/login" exact component={LoginPage} />
+      <main className="py-3" style={{ minHeight: '75vh' }}>
+        <Container>
+          <Switch>
+            <Route path="/register" exact component={RegisterPage} />
+            <Route path="/login" exact component={LoginPage} />
 
-          <Route
-            path="/shop/category/:id/page/:pageNumber"
-            component={CategoryPage}
-          />
-          <Route exact path="/shop/category/:id" component={CategoryPage} />
-          <Route path="/product/:id" exact component={ProductPage} />
-          <Route path="/cart/:id?" component={CartPage} />
-          <PrivateRoute path="/profile" exact component={ProfilePage} />
-          <PrivateRoute path="/shipping" exact component={ShippingPage} />
-          <PrivateRoute path="/placeorder" exact component={PlaceOrderPage} />
-          <PrivateRoute path="/order/:id" component={OrderPage} />
-          <AdminRoute path="/admin/userlist" exact component={UserListPage} />
-          <AdminRoute path="/admin/orderlist" exact component={OrderListPage} />
-          <AdminRoute
-            path="/admin/user/:id/edit"
-            exact
-            component={UserEditPage}
-          />
-          <AdminRoute
-            path="/admin/categoryList"
-            exact
-            component={CategoryListPage}
-          />
-          <AdminRoute
-            path="/admin/category/create"
-            exact
-            component={CategoryCreatePage}
-          />
-          <AdminRoute
-            path="/admin/category/:id/edit"
-            exact
-            component={CategoryEditPage}
-          />
-          <AdminRoute
-            path="/admin/productlist/page/:pageNumber"
-            exact
-            component={ProductListPage}
-          />
-          <AdminRoute
-            path="/admin/productlist"
-            exact
-            component={ProductListPage}
-          />
-          <AdminRoute
-            path="/admin/product/create"
-            exact
-            component={ProductCreatePage}
-          />
-          <AdminRoute
-            path="/admin/product/:id/edit"
-            exact
-            component={ProductEditScreen}
-          />
-          <Route
-            path="/shop/search/:keyword/page/:pageNumber"
-            exact
-            component={ShopPage}
-          />
-          <Route exact path="/shop/search/:keyword" component={ShopPage} />
-          <Route path="/shop/page/:pageNumber" exact component={ShopPage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route path="/" exact component={HomePage} />
-        </Switch>
-      </Container>
+            <Route
+              path="/shop/category/:id/page/:pageNumber"
+              component={CategoryPage}
+            />
+            <Route exact path="/shop/category/:id" component={CategoryPage} />
+            <Route path="/product/:id" exact component={ProductPage} />
+            <Route path="/cart/:id?" component={CartPage} />
+            <PrivateRoute path="/profile" exact component={ProfilePage} />
+            <PrivateRoute path="/shipping" exact component={ShippingPage} />
+            <PrivateRoute path="/placeorder" exact component={PlaceOrderPage} />
+            <PrivateRoute path="/order/:id" component={OrderPage} />
+            <AdminRoute path="/admin/userlist" exact component={UserListPage} />
+            <AdminRoute
+              path="/admin/orderlist"
+              exact
+              component={OrderListPage}
+            />
+            <AdminRoute
+              path="/admin/user/:id/edit"
+              exact
+              component={UserEditPage}
+            />
+            <AdminRoute
+              path="/admin/categoryList"
+              exact
+              component={CategoryListPage}
+            />
+            <AdminRoute
+              path="/admin/category/create"
+              exact
+              component={CategoryCreatePage}
+            />
+            <AdminRoute
+              path="/admin/category/:id/edit"
+              exact
+              component={CategoryEditPage}
+            />
+            <AdminRoute
+              path="/admin/productlist/page/:pageNumber"
+              exact
+              component={ProductListPage}
+            />
+            <AdminRoute
+              path="/admin/productlist"
+              exact
+              component={ProductListPage}
+            />
+            <AdminRoute
+              path="/admin/product/create"
+              exact
+              component={ProductCreatePage}
+            />
+            <AdminRoute
+              path="/admin/product/:id/edit"
+              exact
+              component={ProductEditScreen}
+            />
+            <Route
+              path="/shop/search/:keyword/page/:pageNumber"
+              exact
+              component={ShopPage}
+            />
+            <Route exact path="/shop/search/:keyword" component={ShopPage} />
+            <Route path="/shop/page/:pageNumber" exact component={ShopPage} />
+            <Route path="/shop" component={ShopPage} />
+            <Route path="/" exact component={HomePage} />
+          </Switch>
+        </Container>
+      </main>
+      <Footer />
     </Router>
   );
 };

@@ -4,6 +4,7 @@ import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { PayPalButton } from 'react-paypal-button-v2';
+import moment from 'moment';
 
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -106,7 +107,7 @@ const OrderPage = ({ match }) => {
             <ListGroup.Item>
               {order.isDelivered ? (
                 <Message variant="success">
-                  Delivered on {order.deliveredAt}
+                  Delivered on {moment(order.deliveredAt).fromNow()}
                 </Message>
               ) : (
                 <Message>Not Delivered</Message>
@@ -114,7 +115,9 @@ const OrderPage = ({ match }) => {
             </ListGroup.Item>
             <ListGroup.Item>
               {order.isPaid ? (
-                <Message variant="success">Paid on {order.paidAt}</Message>
+                <Message variant="success">
+                  Paid on {moment(order.paidAt).fromNow()}
+                </Message>
               ) : (
                 <Message>Not Paid</Message>
               )}

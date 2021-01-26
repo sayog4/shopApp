@@ -44,6 +44,7 @@ export const productDetailsReducer = (
       };
     case PRODUCT_CONSTANT.PRODUCT_DETAILS_FAIL:
       return {
+        ...state,
         loading: false,
         error: action.payload
       };
@@ -58,15 +59,18 @@ export const productTopRatedReducer = (state = { products: [] }, action) => {
   switch (action.type) {
     case PRODUCT_CONSTANT.PRODUCT_TOP_REQUEST:
       return {
+        ...state,
         loading: true
       };
     case PRODUCT_CONSTANT.PRODUCT_TOP_SUCCESS:
       return {
+        ...state,
         loading: false,
         products: action.payload
       };
     case PRODUCT_CONSTANT.PRODUCT_TOP_FAIL:
       return {
+        ...state,
         loading: false,
         error: action.payload
       };
@@ -123,15 +127,18 @@ export const productUpdateReducer = (state = { product: {} }, action) => {
   switch (action.type) {
     case PRODUCT_CONSTANT.PRODUCT_UPDATE_REQUEST:
       return {
+        ...state,
         loading: true
       };
     case PRODUCT_CONSTANT.PRODUCT_UPDATE_SUCCESS:
       return {
+        ...state,
         loading: false,
         success: true
       };
     case PRODUCT_CONSTANT.PRODUCT_UPDATE_FAIL:
       return {
+        ...state,
         loading: false,
         error: action.payload
       };

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -151,7 +152,7 @@ const ProductPage = ({ match, history }) => {
                   <ListGroup.Item key={review._id}>
                     <strong>{review.name}</strong>
                     <Rating value={review.rating} />
-                    <p>{review.createdAt.substring(0, 10)}</p>
+                    <p>{moment(review.createdAt).fromNow()}</p>
                     <p>{review.comment}</p>
                   </ListGroup.Item>
                 ))}

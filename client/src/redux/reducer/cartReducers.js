@@ -29,6 +29,11 @@ export const cartReducer = (
         ...state,
         shippingAddress: action.payload
       };
+    case CART_CONSTANT.CART_ITEMS_RESET:
+      return {
+        ...state,
+        cartItems: []
+      };
     default:
       return state;
   }

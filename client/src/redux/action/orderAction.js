@@ -1,5 +1,6 @@
 import axios from 'axios';
 import ORDER_CONSTANT from '../constant/orderConstant';
+import CART_CONSTANT from '../constant/cartConstants';
 
 export const createOrder = order => async (dispatch, getState) => {
   try {
@@ -98,6 +99,8 @@ export const payOrder = (orderId, paymentResult) => async (
       type: ORDER_CONSTANT.ORDER_PAY_SUCCESS,
       payload: data
     });
+    dispatch({ type: CART_CONSTANT.CART_ITEMS_RESET });
+    localStorage.removeItem('cartItems');
   } catch (error) {
     dispatch({
       type: ORDER_CONSTANT.ORDER_PAY_FAIL,

@@ -53,11 +53,13 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
       };
     case USER_CONSTANTS.USER_DETAILS_SUCCESS:
       return {
+        ...state,
         loading: false,
         user: action.payload
       };
     case USER_CONSTANTS.USER_DETAILS_FAIL:
       return {
+        ...state,
         loading: false,
         error: action.payload
       };
@@ -104,11 +106,13 @@ export const userListReducer = (state = { users: [] }, action) => {
       };
     case USER_CONSTANTS.USER_LIST_SUCCESS:
       return {
+        ...state,
         loading: false,
         users: action.payload
       };
     case USER_CONSTANTS.USER_LIST_FAIL:
       return {
+        ...state,
         loading: false,
         error: action.payload
       };
@@ -125,15 +129,18 @@ export const userDeleteReducer = (state = { users: [] }, action) => {
   switch (action.type) {
     case USER_CONSTANTS.USER_DELETE_REQUEST:
       return {
+        ...state,
         loading: true
       };
     case USER_CONSTANTS.USER_DELETE_SUCCESS:
       return {
+        ...state,
         loading: false,
         success: true
       };
     case USER_CONSTANTS.USER_DELETE_FAIL:
       return {
+        ...state,
         loading: false,
         error: action.payload
       };
@@ -146,15 +153,18 @@ export const userUpdateReducer = (state = { user: {} }, action) => {
   switch (action.type) {
     case USER_CONSTANTS.USER_UPDATE_REQUEST:
       return {
+        ...state,
         loading: true
       };
     case USER_CONSTANTS.USER_UPDATE_SUCCESS:
       return {
+        ...state,
         loading: false,
         success: true
       };
     case USER_CONSTANTS.USER_UPDATE_FAIL:
       return {
+        ...state,
         loading: false,
         error: action.payload
       };

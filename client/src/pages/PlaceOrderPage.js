@@ -72,7 +72,7 @@ const PlaceOrderPage = ({ history }) => {
             <ListGroup.Item>
               <h2>Paymet Method</h2>
               <strong>Method: </strong>
-              <p className="lead">Braintree</p>
+              <p className="lead">PayPal / Credit Card</p>
             </ListGroup.Item>
             <ListGroup.Item>
               <h2>Order Items</h2>

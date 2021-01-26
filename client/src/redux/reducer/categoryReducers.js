@@ -72,15 +72,18 @@ export const categoryUpdateReducer = (state = { category: {} }, action) => {
   switch (action.type) {
     case CATEGORY_CONSTANT.CATEGORY_UPDATE_REQUEST:
       return {
+        ...state,
         loading: true
       };
     case CATEGORY_CONSTANT.CATEGORY_UPDATE_SUCCESS:
       return {
+        ...state,
         loading: false,
         success: true
       };
     case CATEGORY_CONSTANT.CATEGORY_UPDATE_FAIL:
       return {
+        ...state,
         loading: false,
         error: action.payload
       };
@@ -102,6 +105,7 @@ export const categorySingleReducer = (state = { category: {} }, action) => {
       };
     case CATEGORY_CONSTANT.CATEGORY_SINGLE_SUCCESS:
       return {
+        ...state,
         loading: false,
         category: action.payload
       };
@@ -123,10 +127,12 @@ export const categoryFetchProductsReducer = (
   switch (action.type) {
     case CATEGORY_CONSTANT.CATEGORY_FETCH_PRODUCTS_REQUEST:
       return {
+        ...state,
         loading: true
       };
     case CATEGORY_CONSTANT.CATEGORY_FETCH_PRODUCTS_SUCCESS:
       return {
+        ...state,
         loading: false,
         products: action.payload.products,
         pages: action.payload.pages,
@@ -134,6 +140,7 @@ export const categoryFetchProductsReducer = (
       };
     case CATEGORY_CONSTANT.CATEGORY_FETCH_PRODUCTS_FAIL:
       return {
+        ...state,
         loading: false,
         error: action.payload
       };
