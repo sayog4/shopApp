@@ -1,4 +1,4 @@
-# [ShopApp](https://eshopstore.herokuapp.com/shop)
+# [ShopApp](https://eshopstore.herokuapp.com)
 
 Online app where people can buy diiferent products.
 
