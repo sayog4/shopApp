@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import FormContainer from '../components/FormContainer';
 import Loader from '../components/Loader';
@@ -71,6 +72,10 @@ const LoginPage = ({ location, history }) => {
           Log In
         </Button>
       </Form>
+
+      <h4>
+        New user? Click <Link to="/register">here</Link> to register.
+      </h4>
     </FormContainer>
   );
 };

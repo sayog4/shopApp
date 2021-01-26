@@ -25,6 +25,8 @@ export const createOrder = order => async (dispatch, getState) => {
       type: ORDER_CONSTANT.ORDER_CREATE_SUCCESS,
       payload: data
     });
+    dispatch({ type: CART_CONSTANT.CART_ITEMS_RESET });
+    localStorage.removeItem('cartItems');
   } catch (error) {
     dispatch({
       type: ORDER_CONSTANT.ORDER_CREATE_FAIL,
@@ -99,8 +101,6 @@ export const payOrder = (orderId, paymentResult) => async (
       type: ORDER_CONSTANT.ORDER_PAY_SUCCESS,
       payload: data
     });
-    dispatch({ type: CART_CONSTANT.CART_ITEMS_RESET });
-    localStorage.removeItem('cartItems');
   } catch (error) {
     dispatch({
       type: ORDER_CONSTANT.ORDER_PAY_FAIL,

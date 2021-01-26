@@ -122,6 +122,8 @@ const ProfilePage = () => {
           <Loader />
         ) : errorOrders ? (
           <Message>{errorOrders}</Message>
+        ) : orders.length === 0 ? (
+          <h4 className="my-5">You haven't ordered any items.</h4>
         ) : (
           <Table stripped="true" bordered hover responsive className="table-sm">
             <thead>
